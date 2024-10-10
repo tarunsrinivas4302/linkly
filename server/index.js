@@ -17,7 +17,7 @@ const qrRouter = require("./routes/qr.routes.js");
 
 app.use(
   cors({
-    origin: "https://linkly-iota.vercel.app/" || "*",
+    origin: process.env.BASE_URI || "*",
     credentials: true,
     methods: "GET, POST, PUT, DELETE, OPTIONS",
     allowedHeaders: [
@@ -64,11 +64,12 @@ app.listen(5000, () => {
 });
 
 
-app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'public', 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'client/dist', 'index.html'));
 });
+
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/qr/", qrRouter);
