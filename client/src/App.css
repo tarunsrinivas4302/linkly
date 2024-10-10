@@ -1,0 +1,19 @@
+.gradient-heading {
+  line-height: 45px;
+  background: radial-gradient(
+    95.19% 12441.23% at 5.56% 79.01%,
+    #eb568e 0%,
+    #144ee3 100%
+  );
+  font-weight: 800;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+body{
+    background-color: var(--background2) !important;
+    color: var(--foreground2) !important;
+    
+}
