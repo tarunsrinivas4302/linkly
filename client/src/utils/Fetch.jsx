@@ -37,7 +37,6 @@ const api = (props) => {
             return response.data;
         },
         (error) => {
-            console.log({ error: error.response.data });
             return error?.response?.data || error.message
         }
     );
@@ -64,7 +63,7 @@ export const Fetch = async (req) => {
         options = { withCredentials: true }
     }
 
-    
+
 
     try {
         const response = await api({
@@ -74,7 +73,7 @@ export const Fetch = async (req) => {
             params,
             headers,
             options
-        });      
+        });
         if (response.success) {
             return Promise.resolve(response);
         }

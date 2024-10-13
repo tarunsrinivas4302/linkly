@@ -9,6 +9,7 @@ export const useUrlContext = () => useContext(UrlContext);
 // eslint-disable-next-line react/prop-types
 const UrlProvider = ({ children, position = "center-top" }) => {
     const token = getToken();
+    console.log({tokenInCntext : token})
     const [toastPosition, setToastPosition] = useState(position);
     const options = {
         endpoint: '/user/profile',

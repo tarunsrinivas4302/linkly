@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv")
+dotenv.config();
 
 function generateAccessToken(user) {
   try {
@@ -8,7 +9,6 @@ function generateAccessToken(user) {
       email: user.email,
     };
     const secret = process.env.JWT_KEY;
-
     const TokenAge = 1000 * 60 * 60 * 24; // 24 hours
 
     const options = { expiresIn: TokenAge };

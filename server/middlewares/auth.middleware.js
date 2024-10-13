@@ -6,6 +6,8 @@ function authMiddleware(req, res, next) {
     req.headers.authorization && req.headers.authorization.startsWith("Bearer")
       ? req.headers.authorization.split(" ")[1]
       : null;
+
+
   if (!token || token === null) {
     throw new CustomError("Un Authorized , No Token Provided!!", 401);
   }
@@ -13,7 +15,6 @@ function authMiddleware(req, res, next) {
   try {
     const secret = process.env.JWT_KEY;
     const tokenStatus = verifyAccessToken(token, secret);
-
     if (!tokenStatus.success) {
       throw new CustomError("Unauthorized, Invalid Token Provided!!", 401);
     }
