@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "server/index.js",
   "scripts": {
-    "start": "concurrently \"npm:build-client\" \"npm run server\"",
-    "build-client": "node checkBuild.js && npm run build:client",
-    "server": "nodemon server/index.js",
+    "start": "npm install && cd client && npm install && npm run build-client && npm run server",
+    "build-client": "cd client && npm run build",
+    "server": "node server/index.js",
     "client": "vite --config client/vite.config.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build:client && npm run build:server",
