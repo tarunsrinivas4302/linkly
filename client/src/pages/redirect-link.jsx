@@ -1,13 +1,13 @@
 import useFetch from "@/hooks/useFetch";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 import { UAParser } from "ua-parser-js";
 
 const RedirectTo = () => {
     const { url } = useParams();
     const { loading, data, fn: getUrlData } = useFetch({ method: "POST", endpoint: `/update` });
-    const [reqData, setReqData] = useState(null);
+
 
     const parser = new UAParser();
 
@@ -44,7 +44,7 @@ const RedirectTo = () => {
                 }
             }
 
-            setReqData(requestData);
+    
 
             getUrlData({
                 data: JSON.stringify(requestData)
@@ -63,10 +63,9 @@ const RedirectTo = () => {
         }
     }, [data]);
 
-    if (loading || !reqData) {
+    if (loading) {
 
-        // return <BarLoader className="w-full h-full" color="#36d7b7" />;
-        return <BeatLoader />
+        return <div> className="w-full h-full px-2 py-2"</div><BarLoader className="w-full h-full" /></div>
     }
 
     return null;
