@@ -6,7 +6,7 @@ import useHandleUrl from "@/hooks/useHandleUrl"
 import { CopyIcon, DownloadIcon, Filter, TrashIcon } from "lucide-react"
 import { QRCode } from "react-qrcode-logo"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
-import { BeatLoader } from "react-spinners"
+import { BarLoader } from "react-spinners"
 
 const CreateLink = lazy(() => import("@/components/create-link"));
 const ErrorMsg = lazy(() => import("@/components/error"));
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      {loading && <BeatLoader />}
+      {loading && <BarLoader className="w-full h-full"/>}
       <div className="grid grid-cols-2 gap-4">
         <Card className="bg-body-bg text-body-fg">
           <CardHeader>
@@ -73,7 +73,7 @@ const Dashboard = () => {
 
       <div className="flex justify-between">
         <h1 className="text-4xl font-extrabold">My Links</h1>
-        <Suspense fallback={<BeatLoader />}>
+        <Suspense fallback={<BarLoader className="w-full h-full"/>}>
           <CreateLink setTrigger={setTrigger} />
         </Suspense>
       </div>
@@ -89,7 +89,7 @@ const Dashboard = () => {
         <Filter className="absolute top-2 right-2 p-1" />
       </div>
 
-      <Suspense fallback={<BeatLoader />}>
+      <Suspense fallback={<BarLoader className="w-full h-full"/>}>
         {error && <ErrorMsg message={error.message} />}
       </Suspense>
 
