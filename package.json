@@ -4,7 +4,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "npm run setup && npm run build-client && npm run server",
-    "setup": "npm install && cd client && npm install",
+    "setup": "npm install --include=dev && cd client && npm install --include=dev",
     "build-client": "cd client && npm run build",
     "server": "node server/index.js",
     "dev": "concurrently \"npm:server\" \"npm run client\"",
