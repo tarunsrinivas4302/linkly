@@ -5,7 +5,7 @@ import MainLayout from './layouts/MainLayout';
 import NotFound from './pages/NotFound';
 import UrlProvider from './context/UrlContext';
 import RequireAuth from './components/RequireAuth';
-import { CircleLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 
 const LandingPage = lazy(() => import('./pages/landing-page'));
 const Dashboard = lazy(() => import('./pages/dashboard'));
@@ -24,7 +24,7 @@ function App() {
         {
           path: '/',
           element: (
-            <Suspense fallback={<CircleLoader />}>
+            <Suspense fallback={<BarLoader className="w-full h-full " />}>
               <LandingPage />
             </Suspense>
           )
@@ -32,7 +32,7 @@ function App() {
         {
           path: '/link',
           element: <RequireAuth>
-            <Suspense fallback={<CircleLoader />}>
+            <Suspense fallback={<BarLoader className="w-full h-full" />}>
               <LinkPage />
             </Suspense>
           </RequireAuth>
@@ -41,7 +41,7 @@ function App() {
           path: '/dashboard',
           element: (
             <RequireAuth>
-              <Suspense fallback={<CircleLoader />}>
+              <Suspense fallback={<BarLoader className="w-full h-full" />}>
                 <Dashboard />
               </Suspense>
             </RequireAuth>
@@ -58,14 +58,18 @@ function App() {
       path: '/auth',
       element:
         (
-          <Suspense fallback={<CircleLoader />}>
+          <Suspense fallback={<BarLoader className="w-full h-full" />}>
             <Auth />
           </Suspense>
         )
     },
     {
       path: '/:url',
-      element: <RedirectTo />
+      element: (
+        <Suspense fallback={<BarLoader className="w-full h-full" />}>
+          <RedirectTo />
+        </Suspense>
+      )
     },
   ])
 
