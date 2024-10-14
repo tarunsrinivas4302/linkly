@@ -6,7 +6,7 @@ import { CopyIcon, DownloadIcon, TrashIcon } from "lucide-react";
 import { useEffect } from "react";
 import { QRCode } from "react-qrcode-logo";
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
-import { BeatLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 import { LinkIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -36,7 +36,7 @@ const LinkPage = () => {
     if(deleteUrl(url)) navigate('/dashboard')
   }
 
-  if (loading) return <BeatLoader />
+  if (loading) return <BarLoader className="w-full h-full"/>
 
   if (error) return <ErrorMsg message={error.message} />
 
