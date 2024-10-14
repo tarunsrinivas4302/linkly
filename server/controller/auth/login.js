@@ -26,7 +26,7 @@ const login = async (req, res, next) => {
 
     res.cookie("token", token, {
       maxAge: 1000 * 60 * 60 * 24, // One day
-      httpOnly: process.env.NODE_ENV == "production",
+      
       secure: process.env.NODE_ENV == "production", // Set secure flag only in production
       sameSite: process.env.NODE_ENV == "production" ? "None" : "Lax", // 'Lax' for local testing
     });
