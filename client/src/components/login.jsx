@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import ErrorMsg from './error';
@@ -11,8 +11,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import useFetch from '@/hooks/useFetch';
 import { Form } from './ui/form';
+import { Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
     // Define the form schema
     const formSchema = z.object({
         email: z.string().email({ message: "Invalid email address" }),
@@ -22,7 +25,6 @@ const Login = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const longLink = searchParams.get('createNew') || '';
-
     const { user, isAuthenticated, error, fetchUser, triggerToast } = useUrlContext();
     console.log(user, isAuthenticated);
     const reqData = {
@@ -110,13 +112,14 @@ const Login = () => {
                         </div>
 
                         {/* Password field */}
-                        <div className="space-y-1">
+                        <div className="space-y-1 relative">
                             <Input
-                                type="password"
+                                type={isVisible ? "text" : "password"}
                                 {...form.register("password")}
-                                className="border-b-2 px-4 text-lg py-3"
+                                className="border-b-2 px-4 text-lg py-3 text-slate-200 "
                                 placeholder="Enter Your Password"
                             />
+                            {isVisible ? <Eye onClick={() => setIsVisible(!isVisible)} className='cursor-pointer  inline absolute  right-4 bottom-3.5 text-white' /> : <EyeOff className='cursor-pointer inline absolute right-4 bottom-3.5 text-white' onClick={() => setIsVisible(!isVisible)} />}
                             {form.formState.errors.password && <ErrorMsg message={form.formState.errors.password.message} />}
                         </div>
                     </CardContent>
