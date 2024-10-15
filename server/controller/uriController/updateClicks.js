@@ -5,9 +5,9 @@ const CustomError = require("./../../classes/CustomError.js");
 const updateClicks = async (req, res, next) => {
     try {
         const { urlID, country, city, device } = req.body;
-        const { id: user } = req.user;
+        //const { id: user } = req.user;
 
-        if (!user) throw new CustomError("Unauthorized", 401);
+        //if (!user) throw new CustomError("Unauthorized", 401);
         if (!urlID) throw new CustomError("Bad Request", 400);
 
         const shortUrl = process.env.BASE_URI +  urlID
@@ -34,7 +34,6 @@ const updateClicks = async (req, res, next) => {
             country,
             device,
             url: newDoc._id,
-            user,
             clicks: newDoc.clicks
         })
 
