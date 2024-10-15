@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      {loading && <BarLoader className="w-full h-full"/>}
+      {loading && <BarLoader className="w-full h-full" />}
       <div className="grid grid-cols-2 gap-4">
         <Card className="bg-body-bg text-body-fg">
           <CardHeader>
@@ -73,7 +73,7 @@ const Dashboard = () => {
 
       <div className="flex justify-between">
         <h1 className="text-4xl font-extrabold">My Links</h1>
-        <Suspense fallback={<BarLoader className="w-full h-full"/>}>
+        <Suspense fallback={<BarLoader className="w-full h-full" />}>
           <CreateLink setTrigger={setTrigger} />
         </Suspense>
       </div>
@@ -89,7 +89,7 @@ const Dashboard = () => {
         <Filter className="absolute top-2 right-2 p-1" />
       </div>
 
-      <Suspense fallback={<BarLoader className="w-full h-full"/>}>
+      <Suspense fallback={<BarLoader className="w-full h-full" />}>
         {error && <ErrorMsg message={error.message} />}
       </Suspense>
 
@@ -97,29 +97,42 @@ const Dashboard = () => {
         data?.data.allUrls
           .filter(url => (url.title.toLowerCase() || url.shortUrl.toLowerCase() || url.originalUrl.toLowerCase()).includes(searchQuery.toLowerCase()))
           .map(url => (
-            <Card key={url._id} className="bg-body-bg text-body-fg relative">
-              <CardContent className="p-4 flex gap-3 w-full" onClick={(e) => handleRedirect(e, `/link/?url=${url._id}`)}>
-                <QRCode value={url.shortUrl} />
-                <div className="">
-                  <p className="text-2xl font-bold">{url.title}</p>
+            <Card key={url._id} className="bg-body-bg text-body-fg relative overflow-hidden">
+              <CardContent
+                className="p-4 flex gap-3 w-full max-sm:flex-col max-sm:gap-2"
+                onClick={(e) => handleRedirect(e, `/link/?url=${url._id}`)}
+              >
+                <QRCode value={url.shortUrl} className="max-sm:w-4/5" />
 
-                  {/* Prevent card's onClick from firing on link clicks */}
+                <div className="w-full flex flex-col overflow-hidden">
+                  <p className="text-2xl font-bold mt-2 break-words">
+                    {url.title}
+                  </p>
+
                   <Link
                     to={`/${url._id}`}
-                    className="text-xl font-bold hover:underline my-2 block text-blue-600"
-                    onClick={(e) => e.stopPropagation()}  // Added stopPropagation
+                    className="text-xl font-bold hover:underline my-2 block text-blue-600 truncate"
+                    onClick={(e) => e.stopPropagation()} // Prevent bubbling
                   >
                     {url.shortUrl}
                   </Link>
 
-                  <p className="text-lg">{url.originalUrl}</p>
+                  <p
+                    className="gap-1 hover:underline cursor-pointer text-lg p-1 break-words truncate overflow-hidden max-h-12"
+                    title={url.originalUrl} // Add tooltip for long text
+                  >
+                    {url.originalUrl}
+                  </p>
                 </div>
               </CardContent>
 
-              <CopyIcon className="absolute top-2 right-24 cursor-pointer" onClick={() => handleCopy(url.shortUrl)} />
-              <DownloadIcon className="absolute top-2 cursor-pointer right-12" onClick={() => handleDownload(url)} />
-              <TrashIcon className="absolute top-2 cursor-pointer right-2" onClick={() => handleDelete(url)} />
+              <div className="flex gap-2">
+                <CopyIcon className="absolute top-2 right-24 cursor-pointer" onClick={() => handleCopy(url.shortUrl)} />
+                <DownloadIcon className="absolute top-2 cursor-pointer right-12" onClick={() => handleDownload(url)} />
+                <TrashIcon className="absolute top-2 cursor-pointer right-2" onClick={() => handleDelete(url)} />
+              </div>
             </Card>
+
           ))
       ) : (
         <p className="text-center text-xl">No links found.</p>
