@@ -42,13 +42,20 @@ const LinkPage = () => {
 
   if (data?.data) {
     return (<div className="flex lg:flex-row md:flex-row lg:w-full md:w-full w-full max-sm:flex-col space-y-2 mt-6 sm:flex-col">
-      <div className="w-1/2 max-sm:w-full flex flex-col md:mx-auto max-sm:mx-auto sm:w-full md:w-1/2 lg:w-1/2">
+      <div className="w-1/2 max-sm:w-full flex flex-col md:mx-auto max-sm:mx-auto sm:w-full md:w-1/2 lg:w-1/2 break-words overflow-hidden">
         <h1 className="font-bold text-4xl ml-5 mb-5">{data?.data.title}</h1>
         <Link to={`/${data?.data._id}`}
           className="text-xl font-bold hover:underline ml-4 mb-2 inline-block text-blue-600"
           onClick={(e) => e.stopPropagation()} >{data?.data.shortUrl}</Link>
-        <p className="text-md font-normal mb-3 cursor-pointer"><LinkIcon className="inline-block ml-1 mr-2" />{data?.data.originalUrl}</p>
-
+         <a
+          href={data?.data?.originalUrl}
+          target="_blank"
+          rel="noopener noreferrer" // For security best practices with target="_blank"
+          className="flex items-center gap-2 w-full p-2 overflow-hidden hover:underline cursor-pointer break-words"
+        >
+          <LinkIcon className="inline w-5 h-5 shrink-0" />
+          <span className="break-words overflow-hidden">{data?.data?.originalUrl}</span>
+        </a>
         <QRCode value={data?.data.shortUrl} size={320} />
         <p className="my-3 mx-3">Created At : {data?.data?.createdAt}</p>
         <div className="w-[300px] flex space-x-4 mx-2 my-4">
