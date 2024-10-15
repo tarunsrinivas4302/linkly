@@ -11,9 +11,11 @@ import { useEffect, useState } from "react";
 import { useUrlContext } from "@/context/UrlContext";
 import useFetch from "@/hooks/useFetch";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 
 
 const Signup = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -124,13 +126,15 @@ const Signup = () => {
             </div>
 
             {/* Password field */}
-            <div className="space-y-0.5">
+            <div className="space-y-0.5 relative">
               <Input
                 type="password"
                 {...form.register("password")}
                 className="border-b-2  px-4 text-lg py-3"
                 placeholder="Enter Your Password"
               />
+              {isVisible ? <Eye onClick={() => setIsVisible(!isVisible)} className='cursor-pointer  inline absolute  right-4 bottom-3.5 text-white' /> : <EyeOff className='cursor-pointer inline absolute right-4 bottom-3.5 text-white' onClick={() => setIsVisible(!isVisible)} />}
+              {form.formState.errors.password && <ErrorMsg message={form.formState.errors.password.message} />}
               {form.formState.errors.password && <ErrorMsg message={form.formState.errors.password.message} />}
             </div>
           </CardContent>
