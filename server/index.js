@@ -55,6 +55,12 @@ const { urirouter, authRouter } = require("./routes/index.js");
 const userRouter = require("./routes/user.routes.js");
 const qrRouter = require("./routes/qr.routes.js");
 
+const updateClicks = require("./controller/uriController/updateClicks");
+
+router.post("/update", (req, res, next) => {
+  updateClicks(req, res, next);
+});
+
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/qr", qrRouter);
 app.use("/api/v1/user", authMiddleware,  userRouter);
