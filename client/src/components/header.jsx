@@ -56,13 +56,10 @@ const Header = () => {
               </DropdownMenuTrigger>
 
               <DropdownMenuContent className="py-5">
-                <DropdownMenuItem className="focus-visible:outline-0">
-                  <Link to="/dashboard" className="flex">
-                    <LinkIcon className="mr-2 h-4 w-4" />
-                    My Links
-                  </Link>
-                </DropdownMenuItem>
-
+                   <DropdownMenuItem onSelect={() => navigate("/dashboard")} className="cursor-pointer">
+                  <LinkIcon className="inline mr-2 h-4 w-4" />
+                      My Links
+                  </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={(e) => {
                     e.stopPropagation();
