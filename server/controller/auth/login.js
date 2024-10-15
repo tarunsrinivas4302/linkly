@@ -26,11 +26,11 @@ const login = async (req, res, next) => {
 
     res.cookie("token", token, {
       maxAge: 1000 * 60 * 60 * 24, // One day
+
       secure: process.env.NODE_ENV == "production", // Set secure flag only in production
       sameSite: process.env.NODE_ENV == "production" ? "None" : "Lax", // 'Lax' for local testing
     });
 
-   delete user.password;
 
     sendJSON(res, { user, token }, "User Authenticated Successfully", 201);
   } catch (err) {
