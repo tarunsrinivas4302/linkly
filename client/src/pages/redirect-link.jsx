@@ -6,7 +6,7 @@ import { UAParser } from "ua-parser-js";
 
 const RedirectTo = () => {
     const { url } = useParams();
-    const { loading, data, fn: getUrlData } = useFetch({ method: "POST", endpoint: `/update` });
+    const {  data, fn: getUrlData } = useFetch({ method: "POST", endpoint: `/update` });
 
 
     const parser = new UAParser();
@@ -63,12 +63,10 @@ const RedirectTo = () => {
         }
     }, [data]);
 
-    if (loading) {
 
-        return <div className="container w-full h-full px-2 py-2"><BarLoader className="w-full h-full" /></div>
-    }
 
-    return null;
+         return <BarLoader className="w-full h-full" width={"100%"} color="#36d7b7" />
+   
 };
 
 export default RedirectTo;
