@@ -39,4 +39,4 @@ const login = async (req, res, next) => {
 };
 
 module.exports = login;
-here I don't want to send password and all that in response how to do that
+
