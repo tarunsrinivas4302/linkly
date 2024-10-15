@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
     if (!email || !password) {
       throw new CustomError("Invalid email or password", 400);
     }
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email } , {password : 0 , _id : 0 , __v : 0});
     if (!user) {
       throw new CustomError("Email not found", 404);
     }
