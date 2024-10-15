@@ -57,7 +57,7 @@ const qrRouter = require("./routes/qr.routes.js");
 
 const updateClicks = require("./controller/uriController/updateClicks");
 
-app.post("api/v1/update", (req, res, next) => {
+app.post("/api/v1/update", (req, res, next) => {
   updateClicks(req, res, next);
 });
 
