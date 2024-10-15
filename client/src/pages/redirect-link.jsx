@@ -65,7 +65,7 @@ const RedirectTo = () => {
 
     if (loading) {
 
-        return <div className="w-full h-full px-2 py-2"><BarLoader className="w-full h-full" /></div>
+        return <div className="container w-full h-full px-2 py-2"><BarLoader className="w-full h-full" /></div>
     }
 
     return null;
