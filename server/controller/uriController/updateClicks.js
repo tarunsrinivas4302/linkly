@@ -15,9 +15,9 @@ const updateClicks = async (req, res, next) => {
         let doc;
 
         if (mongoose.Types.ObjectId.isValid(urlID)) {
-            doc = await Url.findOne({ _id: urlID }, { qrData: 0 });
+            doc = await Url.findOne({ _id: urlID });
         } else {
-            doc = await Url.findOne({ shortUrl: newShortUrl }, { qrData: 0 });
+            doc = await Url.findOne({ shortUrl: newShortUrl });
         }
 
         if (!doc) {
