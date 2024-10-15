@@ -22,14 +22,6 @@ const UserSchema = mongoose.Schema(
       required: true,
       minlength: 8,
     },
-    avatar: {
-      type: Buffer,
-      default : Buffer.from(''),
-    },
-    Banner : {
-      type : Buffer,
-      default : Buffer.from(''),
-    },
     isAdmin: {
       type: Boolean,
       default: false,
