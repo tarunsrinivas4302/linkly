@@ -50,7 +50,7 @@ const shortenUrl = async (req, res, next) => {
     if (!urlID.includes(process.env.BASE_URI))
       urlID = process.env.BASE_URI +  urlID;
 
-    const qrShortCode = process.env.BASE_URI + urlID;
+   /* const qrShortCode = process.env.BASE_URI + urlID;
     const qrData = await CreateQRImage(urlID, 300, 300); // Creates a QR Code Image with 300 * 300 px
     if (!qrData) throw new CustomError("Unable to create QR image", 500);
 
@@ -66,6 +66,12 @@ const shortenUrl = async (req, res, next) => {
       user: userID,
       shortUrl: urlID,
       qrData: qrSchema,
+    });*/
+     const UrlData = new Url({
+      title,
+      originalUrl,
+      user: userID,
+      shortUrl: urlID,
     });
 
     const urlData = await UrlData.save();
