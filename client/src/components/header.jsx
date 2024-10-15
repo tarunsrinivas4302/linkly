@@ -56,7 +56,7 @@ const Header = () => {
               </DropdownMenuTrigger>
 
               <DropdownMenuContent className="py-5">
-                   <DropdownMenuItem onSelect={() => navigate("/dashboard")} className="cursor-pointer">
+                   <DropdownMenuItem onSelect={() => navigate("/dashboard")} className="cursor-pointer focus-visible:outline-0">
                   <LinkIcon className="inline mr-2 h-4 w-4" />
                       My Links
                   </DropdownMenuItem>
