@@ -4,10 +4,11 @@ const {
   generateShortURI,
   sendJSON,
 } = require("./../../utils/common.js");
-const CreateQRImage = require("./../../utils/qrcode.js");
+//const CreateQRImage = require("./../../utils/qrcode.js");
 const CustomError = require("./../../classes/CustomError.js");
 
-const { Qr, Url } = require("./../../model/index.js");
+//const { Qr, Url } = require("./../../model/index.js");
+const {  Url } = require("./../../model/index.js");
 
 const dotenv = require("dotenv");
 const User = require("../../model/User.model.js");
