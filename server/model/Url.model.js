@@ -1,33 +1,7 @@
 const mongoose = require("mongoose");
 const { User } = require("./index.js");
 
-const qrSchema = new mongoose.Schema(
-  {
-    qrData: {
-      type: String,
-      default: null,
-      required: true,
-      unique: true,
-    },
-    description: {
-      type: String,
-      default: "",
-    },
-    createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-    scanCount: {
-      type: Number,
-      default: 0,
-    },
-    downloads: {
-      type: Number,
-      default: 0,
-    },
-  },
-  { timestamps: true }
-);
+
 
 
 const urlSchema = new mongoose.Schema(
@@ -58,12 +32,6 @@ const urlSchema = new mongoose.Schema(
         message: "Please enter a valid URL",
       },
     },
-    qrData: {
-      type: qrSchema,
-      required: true,
-      unique: true,
-    },
-
     clicks: {
       type: Number,
       default: 0,
