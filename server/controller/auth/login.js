@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
     if (!email || !password) {
       throw new CustomError("Invalid email or password", 400);
     }
-    const user = await User.findOne({ email } , { _id : 0 , __v : 0});
+    const user = await User.findOne({ email });
     if (!user) {
       throw new CustomError("Email not found", 404);
     }
@@ -26,7 +26,6 @@ const login = async (req, res, next) => {
 
     res.cookie("token", token, {
       maxAge: 1000 * 60 * 60 * 24, // One day
-      
       secure: process.env.NODE_ENV == "production", // Set secure flag only in production
       sameSite: process.env.NODE_ENV == "production" ? "None" : "Lax", // 'Lax' for local testing
     });
