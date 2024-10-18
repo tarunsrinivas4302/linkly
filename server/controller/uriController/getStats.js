@@ -21,7 +21,7 @@ const getStats = async (req, res, next) => {
         if (!data) throw new CustomError("No Data Found", 404);
 
 
-        let totalClicks = data[data.length - 1].clicks;
+        let totalClicks = data[data.length - 1]?.clicks;
 
 
 
