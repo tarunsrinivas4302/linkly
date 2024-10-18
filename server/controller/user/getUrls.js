@@ -14,11 +14,7 @@ const getUrls = async (req, res, next) => {
       $and: [{ user: userID }, { isActive: true }],
     };
     const projection = {
-      __v: 0,
-      "qrData.scanCount": 0,
-      "qrData.downloads": 0,
-      "qrData.updatedAt": 0,
-      "qrData.createdBy": 0,
+      __v: 0
     };
     const allUrls = await Url.find(query, projection)
       .sort({ createdAt: -1 })
